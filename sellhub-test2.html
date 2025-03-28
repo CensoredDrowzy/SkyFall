@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SellHub Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.sellhub.io/v1/sellhub.js"></script>
+    <script type="module" src="https://public.sellhub.cx/embeds.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            SellHub.init({
+                apiKey: 'cec68c8f-c259-4b62-a7ef-7cdd81a03d9d_oi7vv55dn58wwom9fbmbl4xg99ixfdo2ni3zqo7ewd904dmvt8f0tbq8cvpqmzzv'
+            });
+        });
+    </script>
+</head>
+<body class="bg-gray-900 p-8">
+    <div class="max-w-md mx-auto">
+        <button
+            data-sellhub-product="3e77f619-d7e3-4e1a-9954-6fe5e688660a"
+            class="bg-white text-black px-4 py-2 rounded-lg"
+        >
+            Buy Variant
+        </button>
+        <button
+            data-sellhub-cart-product="3e77f619-d7e3-4e1a-9954-6fe5e688660a"
+            class="bg-white text-black px-4 py-2 rounded-lg ml-4"
+        >
+            Add to Cart
+        </button>
+    </div>
+</body>
+</html>

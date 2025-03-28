@@ -1,5 +1,5 @@
 import { sellhubApiKey } from './config.js';
-
+<script type="module" src="https://public.sellhub.cx/embeds.js"></script>
 // Product data for each game category
 const products = {
     fortnite: [
@@ -109,23 +109,13 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <div class="flex space-x-2">
                                     <button
                                         data-sellhub-product="3e77f619-d7e3-4e1a-9954-6fe5e688660a"
-                                        style="
-                                            border-radius: 10px;
-                                            background-color: #ffffff;
-                                            color: #000000;
-                                            padding: 5px 25px;
-                                        "
+                                        class="sellhub-btn"
                                     >
                                         Buy Variant
                                     </button>
                                     <button
                                         data-sellhub-cart-product="3e77f619-d7e3-4e1a-9954-6fe5e688660a"
-                                        style="
-                                            border-radius: 10px;
-                                            background-color: #ffffff;
-                                            color: #000000;
-                                            padding: 5px 25px;
-                                        "
+                                        class="sellhub-btn"
                                     >
                                         Add to Cart
                                     </button>
@@ -176,74 +166,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initialize SellHub and set up button handlers
+    // Initialize SellHub with error handling
     function initializeSellHub() {
-        SellHub.init({
-            apiKey: sellhubApiKey
-        }).then(() => {
-            // Handle SellHub button clicks
-            document.addEventListener('click', function(e) {
-                // Buy Variant button
-                if (e.target.closest('[data-sellhub-product]')) {
-                    const button = e.target.closest('[data-sellhub-product]');
-                    const productId = button.getAttribute('data-sellhub-product');
-                    
-                    // Visual feedback
-                    button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
-                    button.disabled = true;
-                    
-                    // Open product checkout
-                    SellHub.checkout.open(productId)
-                        .then(() => {
-                            button.innerHTML = 'Buy Variant';
-                            button.disabled = false;
-                        })
-                        .catch(err => {
-                            console.error('Error:', err);
-                            button.innerHTML = '<i class="fas fa-times mr-2"></i> Error';
-                            setTimeout(() => {
-                                button.innerHTML = 'Buy Variant';
-                                button.disabled = false;
-                            }, 1500);
-                        });
-                }
-                // Add to Cart button
-                else if (e.target.closest('[data-sellhub-cart-product]')) {
-                    const button = e.target.closest('[data-sellhub-cart-product]');
-                    const productId = button.getAttribute('data-sellhub-cart-product');
-                    
-                    // Visual feedback
-                    button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Adding...';
-                    button.disabled = true;
-                    
-                    // Add to cart
-                    SellHub.cart.add(productId, 1)
-                        .then(() => {
-                            button.innerHTML = '<i class="fas fa-check mr-2"></i> Added!';
-                            setTimeout(() => {
-                                button.innerHTML = 'Add to Cart';
-                                button.disabled = false;
-                            }, 1500);
-                        })
-                        .catch(err => {
-                            console.error('Error:', err);
-                            button.innerHTML = '<i class="fas fa-times mr-2"></i> Error';
-                            setTimeout(() => {
-                                button.innerHTML = 'Add to Cart';
-                                button.disabled = false;
-                            }, 1500);
-                        });
-                }
+        if (typeof SellHub !== 'undefined') {
+            SellHub.init({
+                apiKey: 'cec68c8f-c259-4b62-a7ef-7cdd81a03d9d_oi7vv55dn58wwom9fbmbl4xg99ixfdo2ni3zqo7ewd904dmvt8f0tbq8cvpqmzzv'
+            }).then(() => {
+                console.log('SellHub initialized successfully');
+            }).catch(err => {
+                console.error('SellHub initialization failed:', err);
             });
-        });
+        } else {
+            console.error('SellHub is not defined');
+        }
     }
 
-    // Wait for DOM and SellHub to be ready
-    document.addEventListener('DOMContentLoaded', function() {
-        if (window.SellHub) {
-            initializeSellHub();
-        } else {
-            window.addEventListener('sellhub:ready', initializeSellHub);
-        }
-    });
+    // Wait for DOM and SellHub to load
+    if (document.readyState === 'complete') {
+        initializeSellHub();
+    } else {
+        window.addEventListener('DOMContentLoaded', initializeSellHub);
+        window.addEventListener('sellhub:ready', initializeSellHub);
+    }
 });

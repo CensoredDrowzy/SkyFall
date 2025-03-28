@@ -1,0 +1,157 @@
+/* Modern Aqua Blue Theme */
+:root {
+    --aqua: #00e1ff;
+    --deep-blue: #001a33;
+    --dark-bg: #0a0e17;
+    --card-bg: rgba(0, 30, 60, 0.5);
+}
+
+body {
+    background: var(--dark-bg);
+    color: #e2e2e2;
+}
+
+/* Glassmorphism Effect */
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 225, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Modern Swiper Navigation */
+.swiper-button-next,
+.swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 200, 255, 0.7);
+    border-radius: 50%;
+    color: white !important;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(0, 200, 255, 0.3);
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background-color: rgba(0, 200, 255, 0.9);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 200, 255, 0.5);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 1.2rem !important;
+}
+
+/* Game section styling */
+.game-section {
+    margin-bottom: 3rem;
+}
+
+/* Product card hover effects */
+.swiper-slide {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.swiper-slide:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 200, 255, 0.3);
+    border-color: rgba(0, 200, 255, 0.5) !important;
+    backdrop-filter: blur(2px);
+}
+
+/* SellHub button animation */
+.sellhub-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.sellhub-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+.sellhub-button:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0f;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00c8ff;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 200, 255, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00a8df;
+    box-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+}
+
+/* Pulse animation for featured products */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(107, 33, 168, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(107, 33, 168, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(107, 33, 168, 0);
+    }
+}
+
+.featured {
+    animation: pulse 2s infinite;
+    position: relative;
+}
+
+.featured::before {
+    content: "FEATURED";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(135deg, #00c8ff, #0066ff);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+    z-index: 10;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 10px rgba(0, 200, 255, 0.3);
+}

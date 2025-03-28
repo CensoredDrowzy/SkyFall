@@ -1,3 +1,5 @@
+import { sellhubApiKey } from './config.js';
+
 // Product data for each game category
 const products = {
     fortnite: [
@@ -165,16 +167,42 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initialize SellHub and handle button clicks
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize SellHub with your store ID
-        SellHub.init({
-            storeId: 'YOUR_STORE_ID' // Replace with your actual store ID
-        });
+    // Initialize SellHub with API key from config
+    SellHub.init({
+        apiKey: sellhubApiKey
+    });
 
-        // Handle product button clicks
+    // Handle all button clicks after DOM loads
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Handle all SellHub button clicks
         document.addEventListener('click', function(e) {
-            if (e.target.closest('.sellhub-button')) {
+            // Buy Variant button
+            if (e.target.closest('[data-sellhub-variant]')) {
+                const button = e.target.closest('[data-sellhub-variant]');
+                const variantId = button.getAttribute('data-sellhub-variant');
+                
+                // Visual feedback
+                button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
+                button.disabled = true;
+                
+                // Open variant checkout
+                SellHub.checkout.open(variantId)
+                    .then(() => {
+                        button.innerHTML = 'Buy Variant';
+                        button.disabled = false;
+                    })
+                    .catch(err => {
+                        console.error('Error:', err);
+                        button.innerHTML = '<i class="fas fa-times mr-2"></i> Error';
+                        setTimeout(() => {
+                            button.innerHTML = 'Buy Variant';
+                            button.disabled = false;
+                        }, 1500);
+                    });
+            }
+            // Buy Now button
+            else if (e.target.closest('.sellhub-button')) {
                 const button = e.target.closest('.sellhub-button');
                 const productId = button.getAttribute('data-sellhub-id');
                 

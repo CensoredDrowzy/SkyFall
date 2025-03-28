@@ -114,22 +114,37 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </button>
                                 <div class="flex space-x-2">
                                     <button
-                                        data-sellhub-variant="${product.variantId || '48466442-4ef3-4d15-b263-5a96bd5ed0d8'}"
-                                        class="w-full bg-white text-black font-medium py-2 px-4 rounded-lg transition-all duration-200 hover:bg-gray-100"
+                                        data-sellhub-variant="48466442-4ef3-4d15-b263-5a96bd5ed0d8"
+                                        style="
+                                            border-radius: 10px;
+                                            background-color: #ffffff;
+                                            color: #000000;
+                                            padding: 5px 31px;
+                                        "
                                     >
                                         Buy Variant
                                     </button>
                                     <button
-                                        data-sellhub-cart-variant="${product.variantId || '48466442-4ef3-4d15-b263-5a96bd5ed0d8'}"
-                                        class="w-full bg-white text-black font-medium py-2 px-4 rounded-lg transition-all duration-200 hover:bg-gray-100"
+                                        data-sellhub-cart-variant="48466442-4ef3-4d15-b263-5a96bd5ed0d8"
+                                        style="
+                                            border-radius: 10px;
+                                            background-color: #ffffff;
+                                            color: #000000;
+                                            padding: 5px 31px;
+                                        "
                                     >
                                         Add to Cart
                                     </button>
                                     <button
                                         data-sellhub-open-cart-store-url="https://skyfall.sellhub.cx"
-                                        class="bg-white text-black p-2 rounded-lg transition-all duration-200 hover:bg-gray-100 flex items-center justify-center"
+                                        style="
+                                            border-radius: 10px;
+                                            background-color: #ffffff;
+                                            color: #000000;
+                                            padding: 5px 31px;
+                                        "
                                     >
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:4px;margin-bottom:4px;">
                                             <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
                                             <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
                                         </svg>

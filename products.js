@@ -106,31 +106,25 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <span class="text-xs text-gray-400">Lifetime Updates</span>
                             </div>
                             <div class="flex flex-col space-y-2">
-                                <button 
-                                    class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 sellhub-button shadow-lg hover:shadow-cyan-500/30 flex items-center justify-center gap-2"
-                                    data-sellhub-id="${product.sellhubId}"
-                                >
-                                    Buy Now
-                                </button>
                                 <div class="flex space-x-2">
                                     <button
-                                        data-sellhub-variant="48466442-4ef3-4d15-b263-5a96bd5ed0d8"
+                                        data-sellhub-product="3e77f619-d7e3-4e1a-9954-6fe5e688660a"
                                         style="
                                             border-radius: 10px;
                                             background-color: #ffffff;
                                             color: #000000;
-                                            padding: 5px 31px;
+                                            padding: 5px 25px;
                                         "
                                     >
                                         Buy Variant
                                     </button>
                                     <button
-                                        data-sellhub-cart-variant="48466442-4ef3-4d15-b263-5a96bd5ed0d8"
+                                        data-sellhub-cart-product="3e77f619-d7e3-4e1a-9954-6fe5e688660a"
                                         style="
                                             border-radius: 10px;
                                             background-color: #ffffff;
                                             color: #000000;
-                                            padding: 5px 31px;
+                                            padding: 5px 25px;
                                         "
                                     >
                                         Add to Cart
@@ -182,68 +176,74 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initialize SellHub with API key from config
-    SellHub.init({
-        apiKey: sellhubApiKey
-    });
-
-    // Handle all button clicks after DOM loads
-    document.addEventListener('DOMContentLoaded', function() {
-
-        // Handle all SellHub button clicks
-        document.addEventListener('click', function(e) {
-            // Buy Variant button
-            if (e.target.closest('[data-sellhub-variant]')) {
-                const button = e.target.closest('[data-sellhub-variant]');
-                const variantId = button.getAttribute('data-sellhub-variant');
-                
-                // Visual feedback
-                button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
-                button.disabled = true;
-                
-                // Open variant checkout
-                SellHub.checkout.open(variantId)
-                    .then(() => {
-                        button.innerHTML = 'Buy Variant';
-                        button.disabled = false;
-                    })
-                    .catch(err => {
-                        console.error('Error:', err);
-                        button.innerHTML = '<i class="fas fa-times mr-2"></i> Error';
-                        setTimeout(() => {
+    // Initialize SellHub and set up button handlers
+    function initializeSellHub() {
+        SellHub.init({
+            apiKey: sellhubApiKey
+        }).then(() => {
+            // Handle SellHub button clicks
+            document.addEventListener('click', function(e) {
+                // Buy Variant button
+                if (e.target.closest('[data-sellhub-product]')) {
+                    const button = e.target.closest('[data-sellhub-product]');
+                    const productId = button.getAttribute('data-sellhub-product');
+                    
+                    // Visual feedback
+                    button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
+                    button.disabled = true;
+                    
+                    // Open product checkout
+                    SellHub.checkout.open(productId)
+                        .then(() => {
                             button.innerHTML = 'Buy Variant';
                             button.disabled = false;
-                        }, 1500);
-                    });
-            }
-            // Buy Now button
-            else if (e.target.closest('.sellhub-button')) {
-                const button = e.target.closest('.sellhub-button');
-                const productId = button.getAttribute('data-sellhub-id');
-                
-                // Visual feedback
-                button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Adding...';
-                button.disabled = true;
-                
-                // Add to cart and open checkout
-                SellHub.cart.add(productId, 1)
-                    .then(() => {
-                        button.innerHTML = '<i class="fas fa-check mr-2"></i> Added!';
-                        setTimeout(() => {
-                            button.innerHTML = 'Buy Now';
-                            button.disabled = false;
-                        }, 1500);
-                        SellHub.cart.open();
-                    })
-                    .catch(err => {
-                        console.error('Error:', err);
-                        button.innerHTML = '<i class="fas fa-times mr-2"></i> Error';
-                        setTimeout(() => {
-                            button.innerHTML = 'Buy Now';
-                            button.disabled = false;
-                        }, 1500);
-                    });
-            }
+                        })
+                        .catch(err => {
+                            console.error('Error:', err);
+                            button.innerHTML = '<i class="fas fa-times mr-2"></i> Error';
+                            setTimeout(() => {
+                                button.innerHTML = 'Buy Variant';
+                                button.disabled = false;
+                            }, 1500);
+                        });
+                }
+                // Add to Cart button
+                else if (e.target.closest('[data-sellhub-cart-product]')) {
+                    const button = e.target.closest('[data-sellhub-cart-product]');
+                    const productId = button.getAttribute('data-sellhub-cart-product');
+                    
+                    // Visual feedback
+                    button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Adding...';
+                    button.disabled = true;
+                    
+                    // Add to cart
+                    SellHub.cart.add(productId, 1)
+                        .then(() => {
+                            button.innerHTML = '<i class="fas fa-check mr-2"></i> Added!';
+                            setTimeout(() => {
+                                button.innerHTML = 'Add to Cart';
+                                button.disabled = false;
+                            }, 1500);
+                        })
+                        .catch(err => {
+                            console.error('Error:', err);
+                            button.innerHTML = '<i class="fas fa-times mr-2"></i> Error';
+                            setTimeout(() => {
+                                button.innerHTML = 'Add to Cart';
+                                button.disabled = false;
+                            }, 1500);
+                        });
+                }
+            });
         });
+    }
+
+    // Wait for DOM and SellHub to be ready
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.SellHub) {
+            initializeSellHub();
+        } else {
+            window.addEventListener('sellhub:ready', initializeSellHub);
+        }
     });
 });

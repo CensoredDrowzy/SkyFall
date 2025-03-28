@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script type="module" src="https://public.sellhub.cx/embeds.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
     <style>
         body {
             font-family: 'Oxanium', sans-serif;
@@ -21,27 +20,43 @@
         .title-font {
             font-family: 'Rajdhani', sans-serif;
         }
-        .bg-gradient-to-b {
-            background-image: linear-gradient(to bottom, rgba(0, 150, 255, 0.15), transparent);
+        .nav-glass {
+            background: rgba(0, 20, 40, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 150, 255, 0.2);
+        }
+        .product-box {
+            transition: all 0.3s ease;
+            transform: translateZ(0);
+        }
+        .product-box:hover {
+            transform: translateZ(0);
+            box-shadow: 0 0 25px -5px rgba(255, 255, 255, 0.7);
+            border-color: rgba(255, 255, 255, 0.8);
+            outline: 1px solid rgba(255, 255, 255, 0.8);
+            outline-offset: 2px;
+        }
+        .product-box:active {
+            box-shadow: 0 0 30px -5px rgba(59, 130, 246, 0.7);
         }
     </style>
 </head>
 <body>
-    <!-- Modern Navigation -->
-    <nav class="bg-blue-900/10 backdrop-blur-lg fixed w-full z-50 border-b border-cyan-500/10">
+    <!-- Navigation Bar -->
+    <nav class="nav-glass fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex items-center justify-between h-20">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <span class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent title-font">SKYFALL</span>
+                        <a href="https://skyfallcheats.shop/" class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent title-font">SKYFALL</a>
                     </div>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#" class="text-cyan-100 hover:text-white px-1 py-5 border-b-2 border-transparent hover:border-cyan-400 text-sm font-medium transition-all duration-300">Home</a>
-                    <a href="#" class="text-cyan-100 hover:text-white px-1 py-5 border-b-2 border-transparent hover:border-cyan-400 text-sm font-medium transition-all duration-300">Products</a>
-                    <a href="#" class="text-cyan-100 hover:text-white px-1 py-5 border-b-2 border-transparent hover:border-cyan-400 text-sm font-medium transition-all duration-300">Features</a>
-                    <a href="#" class="text-cyan-100 hover:text-white px-1 py-5 border-b-2 border-transparent hover:border-cyan-400 text-sm font-medium transition-all duration-300">Support</a>
-                    <button class="ml-6 px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-medium rounded-full text-sm transition-all duration-300 shadow-lg hover:shadow-cyan-500/30">
+                    <a href="#" class="text-cyan-100 hover:text-white px-1 py-5 border-b-2 border-transparent hover:border-cyan-400 text-sm font-medium">Home</a>
+                    <a href="#" class="text-cyan-100 hover:text-white px-1 py-5 border-b-2 border-transparent hover:border-cyan-400 text-sm font-medium">Products</a>
+                    <a href="#" class="text-cyan-100 hover:text-white px-1 py-5 border-b-2 border-transparent hover:border-cyan-400 text-sm font-medium">Features</a>
+                    <a href="#" class="text-cyan-100 hover:text-white px-1 py-5 border-b-2 border-transparent hover:border-cyan-400 text-sm font-medium">Support</a>
+                    <button class="ml-6 px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-medium rounded-full text-sm shadow-lg hover:shadow-cyan-500/30">
                         Dashboard
                     </button>
                 </div>
@@ -49,137 +64,75 @@
         </div>
     </nav>
 
-    <!-- Modern Hero Section -->
-    <section class="relative pt-32 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-900/10 to-transparent">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center">
-                <div class="inline-block mb-8 p-1 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600">
-                    <div class="glass-card px-6 py-2 rounded-full">
-                        <span class="text-sm font-semibold text-cyan-300">NEW GENERATION</span>
-                    </div>
-                </div>
-                <h1 class="text-5xl md:text-7xl font-bold text-white title-font mb-6">
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">SKYFALL</span> EXPERIENCE
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
-                    Next-level gaming enhancements with military-grade encryption
-                </p>
-                <div class="flex justify-center gap-4">
-                    <button class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-cyan-500/30">
-                        Explore Products
-                    </button>
-                    <button class="px-8 py-3 border border-cyan-400/30 hover:border-cyan-400/50 text-cyan-300 font-bold rounded-full transition-all duration-300 hover:bg-cyan-500/10">
-                        How It Works
-                    </button>
-                </div>
-            </div>
+    <!-- Hero Section -->
+    <section class="pt-32 pb-32 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 title-font">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">SKYFALL</span> EXPERIENCE
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
+                Next-level gaming enhancements with military-grade encryption
+            </p>
         </div>
-        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-blue-900/10 to-transparent pointer-events-none"></div>
     </section>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-        <div class="space-y-4">
-            <button
-                data-sellhub-product="3e77f619-d7e3-4e1a-9954-6fe5e688660a"
-                style="
-                    border-radius: 10px;
-                    background-color: #ffffff;
-                    color: #000000;
-                    padding: 5px 25px;
-                    margin: 10px;
-                "
-            >
-                Buy Variant
-            </button>
-            <button
-                data-sellhub-cart-product="3e77f619-d7e3-4e1a-9954-6fe5e688660a"
-                style="
-                    border-radius: 10px;
-                    background-color: #ffffff;
-                    color: #000000;
-                    padding: 5px 25px;
-                    margin: 10px;
-                "
-            >
-                Add to Cart
-            </button>
-            <button
-                data-sellhub-open-cart-store-url="https://skyfall.sellhub.cx"
-                style="
-                    border-radius: 10px;
-                    background-color: #ffffff;
-                    color: #000000;
-                    padding: 5px 25px;
-                    margin: 10px;
-                "
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:4px;margin-bottom:4px;">
-                    <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
-                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
-                </svg>
-            </button>
+    <!-- Product Boxes -->
+    <main class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-12">
+        <div class="flex space-x-8 pb-8 pl-2 pr-2">
+            <!-- Fortnite Internal -->
+            <div class="product-box flex-shrink-0 w-full max-w-lg bg-gradient-to-b from-blue-900/30 to-blue-900/10 rounded-xl overflow-hidden border-2 border-cyan-500/30">
+                <div class="p-10">
+                    <h2 class="text-4xl font-bold text-white mb-10 text-center title-font">Fortnite Internal</h2>
+                    <div class="flex flex-col space-y-6 bg-blue-900/20 p-8 rounded-xl">
+                        <button
+                            data-sellhub-product="3e77f619-d7e3-4e1a-9954-6fe5e688660a"
+                            class="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-cyan-500/30 flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-cart"></i> Select Product
+                        </button>
+                        <button
+                            data-sellhub-cart-product="3e77f619-d7e3-4e1a-9954-6fe5e688660a"
+                            class="w-full py-3 bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-bold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-purple-500/30 flex items-center justify-center gap-2">
+                            <i class="fas fa-plus-circle"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fortnite Private -->
+            <div class="product-box flex-shrink-0 w-full max-w-lg bg-gradient-to-b from-blue-900/30 to-blue-900/10 rounded-xl overflow-hidden border-2 border-cyan-500/30">
+                <div class="p-10">
+                    <h2 class="text-4xl font-bold text-white mb-10 text-center title-font">Fortnite Private</h2>
+                    <div class="flex flex-col space-y-6 bg-blue-900/20 p-8 rounded-xl">
+                        <button
+                            data-sellhub-product="deb98a50-fc44-4f62-81c5-bdd0a3543f25"
+                            class="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-cyan-500/30 flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-cart"></i> Select Product
+                        </button>
+                        <button
+                            data-sellhub-cart-product="deb98a50-fc44-4f62-81c5-bdd0a3543f25"
+                            class="w-full py-3 bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-bold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-purple-500/30 flex items-center justify-center gap-2">
+                            <i class="fas fa-plus-circle"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
-    <!-- Modern Footer -->
-    <footer class="bg-blue-900/10 backdrop-blur-lg border-t border-cyan-500/10 mt-20">
-        <div class="max-w-7xl mx-auto px-6 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <span class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent title-font mb-4 inline-block">SKYFALL</span>
-                    <p class="text-cyan-100 text-sm mb-6">Next-generation gaming enhancements with military-grade security.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-cyan-300 hover:text-white transition-colors">
-                            <i class="fab fa-discord fa-lg"></i>
-                        </a>
-                        <a href="#" class="text-cyan-300 hover:text-white transition-colors">
-                            <i class="fab fa-telegram fa-lg"></i>
-                        </a>
-                        <a href="#" class="text-cyan-300 hover:text-white transition-colors">
-                            <i class="fab fa-twitter fa-lg"></i>
-                        </a>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-white font-semibold mb-4">Products</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Fortnite</a></li>
-                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Black Ops 6</a></li>
-                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Rainbow Six</a></li>
-                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">All Games</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-white font-semibold mb-4">Support</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Documentation</a></li>
-                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Guides</a></li>
-                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">API Status</a></li>
-                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-white font-semibold mb-4">Legal</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Privacy Policy</a></li>
-                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Terms of Service</a></li>
-                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Refund Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-cyan-500/10 mt-12 pt-8 text-center">
-                <p class="text-cyan-100 text-sm">&copy; 2023 SkyFall Technologies. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="bg-blue-900/10 border-t border-cyan-500/10 mt-20 py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-cyan-100 text-sm">SkyFall Copyright 2025 | Website Designed By Drowzy All Rights Reserved. Payment Gateway API SellHub.</p>
+            <div class="mt-6">
+                <a href="https://discord.gg/skyfallproducts" target="_blank" class="inline-block text-white hover:text-gray-300 transition-colors">
+                    <i class="fab fa-discord fa-2x"></i>
+                </a>
             </div>
         </div>
     </footer>
 
-    <!-- SellHub Scripts (load first) -->
+    <!-- Scripts -->
     <script src="https://js.sellhub.io/v1/sellhub.js"></script>
-    <script type="module" src="https://public.sellhub.cx/embeds.js"></script>
-    
-    <!-- Other Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script type="module" src="products-simple.js"></script>
 </body>
 </html>

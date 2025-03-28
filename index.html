@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyFall Gaming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+    <style>
+        body {
+            font-family: 'Oxanium', sans-serif;
+            background-color: #0a0a0f;
+            color: #e2e2e2;
+            background-image: 
+                radial-gradient(at 80% 0%, rgba(0, 200, 255, 0.1) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, rgba(0, 150, 255, 0.1) 0px, transparent 50%);
+        }
+        .title-font {
+            font-family: 'Rajdhani', sans-serif;
+        }
+        .bg-gradient-to-b {
+            background-image: linear-gradient(to bottom, rgba(0, 150, 255, 0.15), transparent);
+        }
+    </style>
+</head>
+<body>
+    <!-- Modern Navigation -->
+    <nav class="bg-blue-900/10 backdrop-blur-lg fixed w-full z-50 border-b border-cyan-500/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent title-font">SKYFALL</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-cyan-100 hover:text-white px-1 py-5 border-b-2 border-transparent hover:border-cyan-400 text-sm font-medium transition-all duration-300">Home</a>
+                    <a href="#" class="text-cyan-100 hover:text-white px-1 py-5 border-b-2 border-transparent hover:border-cyan-400 text-sm font-medium transition-all duration-300">Products</a>
+                    <a href="#" class="text-cyan-100 hover:text-white px-1 py-5 border-b-2 border-transparent hover:border-cyan-400 text-sm font-medium transition-all duration-300">Features</a>
+                    <a href="#" class="text-cyan-100 hover:text-white px-1 py-5 border-b-2 border-transparent hover:border-cyan-400 text-sm font-medium transition-all duration-300">Support</a>
+                    <button class="ml-6 px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-medium rounded-full text-sm transition-all duration-300 shadow-lg hover:shadow-cyan-500/30">
+                        Dashboard
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modern Hero Section -->
+    <section class="relative pt-32 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-900/10 to-transparent">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center">
+                <div class="inline-block mb-8 p-1 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600">
+                    <div class="glass-card px-6 py-2 rounded-full">
+                        <span class="text-sm font-semibold text-cyan-300">NEW GENERATION</span>
+                    </div>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold text-white title-font mb-6">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">SKYFALL</span> EXPERIENCE
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
+                    Next-level gaming enhancements with military-grade encryption
+                </p>
+                <div class="flex justify-center gap-4">
+                    <button class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-cyan-500/30">
+                        Explore Products
+                    </button>
+                    <button class="px-8 py-3 border border-cyan-400/30 hover:border-cyan-400/50 text-cyan-300 font-bold rounded-full transition-all duration-300 hover:bg-cyan-500/10">
+                        How It Works
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-blue-900/10 to-transparent pointer-events-none"></div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Products will be added here via JavaScript -->
+        <div id="products-container" class="space-y-16"></div>
+    </main>
+
+    <!-- Modern Footer -->
+    <footer class="bg-blue-900/10 backdrop-blur-lg border-t border-cyan-500/10 mt-20">
+        <div class="max-w-7xl mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <span class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent title-font mb-4 inline-block">SKYFALL</span>
+                    <p class="text-cyan-100 text-sm mb-6">Next-generation gaming enhancements with military-grade security.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-cyan-300 hover:text-white transition-colors">
+                            <i class="fab fa-discord fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-cyan-300 hover:text-white transition-colors">
+                            <i class="fab fa-telegram fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-cyan-300 hover:text-white transition-colors">
+                            <i class="fab fa-twitter fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Products</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Fortnite</a></li>
+                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Black Ops 6</a></li>
+                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Rainbow Six</a></li>
+                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">All Games</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Documentation</a></li>
+                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Guides</a></li>
+                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">API Status</a></li>
+                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="text-cyan-100 hover:text-white text-sm transition-colors">Refund Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-cyan-500/10 mt-12 pt-8 text-center">
+                <p class="text-cyan-100 text-sm">&copy; 2023 SkyFall Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="products.js"></script>
+    <!-- SellHub Scripts -->
+    <script src="https://js.sellhub.io/v1/sellhub.js"></script>
+    <script type="module" src="https://public.sellhub.cx/embeds.js"></script>
+</body>
+</html>

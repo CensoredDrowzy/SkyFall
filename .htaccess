@@ -2,10 +2,13 @@
     RewriteEngine On
     RewriteBase /
 
-    # Make admin-login-secure.html accessible
+    # Handle extensionless admin login URL
+    RewriteRule ^admin-login-secure$ admin-login-secure.html [NC,L]
+
+    # Handle .html version
     RewriteRule ^admin-login-secure\.html$ - [L]
 
-    # Redirect all other non-existent requests to index.html
+    # Redirect all other requests to index.html if they don't exist
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule . /index.html [L]
@@ -15,11 +18,7 @@
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
-# Cache control for static files
-<FilesMatch "\.(html|htm|js|css)$">
-    FileETag None
-    Header unset ETag
-    Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
-    Header set Pragma "no-cache"
-    Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+# Cache control
+<FilesMatch "\.(html|js|css)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
 </FilesMatch>

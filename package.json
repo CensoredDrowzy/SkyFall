@@ -1,7 +1,24 @@
 {
+  "name": "skyfall-admin",
+  "version": "1.0.0",
+  "description": "Secure admin panel for SkyFall",
+  "main": "server.js",
+  "scripts": {
+    "start": "node secureServer.js",
+    "dev": "nodemon secureServer.js",
+    "generate-hash": "node -e \"require('bcryptjs').hash('ChristianC1123!', 12).then(console.log)\"",
+    "migrate": "node scripts/migrate.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^6.11.2",
+    "helmet": "^7.2.0",
+    "jsonwebtoken": "^9.0.2"
+  },
   "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^4.0.17"
+    "nodemon": "^3.1.9"
   }
 }

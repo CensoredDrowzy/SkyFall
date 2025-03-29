@@ -1,3 +1,13 @@
+<script>
+    // Check if last security check was more than 1 minute ago
+    const lastCheck = sessionStorage.getItem('lastSecurityCheck');
+    const now = new Date().getTime();
+    const oneMinute = 60 * 1000;
+    
+    if ((!lastCheck || (now - lastCheck) > oneMinute) && !window.location.href.includes('preloader.html')) {
+        window.location.href = `preloader.html?redirect=${encodeURIComponent('products.html')}`;
+    }
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,33 +38,102 @@
     </style>
 </head>
 <body>
+    <!-- Announcement Modal -->
+    <div id="announcementModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-gray-800/90 backdrop-blur-lg rounded-xl p-6 max-w-md w-full border border-cyan-500/30 shadow-2xl shadow-cyan-500/20">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold text-white title-font">Welcome to the New SkyFall Website!</h3>
+                <button id="closeModal" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="text-gray-300 mb-6">We're excited to announce our brand new website! A dedicated forum is currently in development.</p>
+            <div class="flex justify-end">
+                <button id="acceptModal" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-md transition-colors">
+                    Got it!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('announcementModal');
+            const closeBtn = document.getElementById('closeModal');
+            const acceptBtn = document.getElementById('acceptModal');
+            
+            // Show modal on first visit (using sessionStorage)
+            if (!sessionStorage.getItem('announcementSeen')) {
+                modal.classList.remove('hidden');
+            }
+
+            // Close handlers
+            const closeModal = () => {
+                modal.classList.add('hidden');
+                sessionStorage.setItem('announcementSeen', 'true');
+            };
+
+            closeBtn.addEventListener('click', closeModal);
+            acceptBtn.addEventListener('click', closeModal);
+        });
+    </script>
     <!-- Navigation -->
     <nav class="nav-glass fixed w-full z-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex items-center justify-between h-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <a href="https://skyfallcheats.shop/" class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent title-font">SKYFALL</a>
+                        <a href="https://skyfallcheats.shop/" class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent title-font">SKYFALL</a>
                     </div>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
+                <div class="hidden md:flex items-center space-x-4 lg:space-x-8">
                     <a href="index.html" class="text-cyan-100 hover:text-white px-1 py-5 border-b-2 border-transparent hover:border-cyan-400 text-sm font-medium">Home</a>
                     <a href="https://skyfallcheats.shop/products" class="text-cyan-100 hover:text-white px-1 py-5 border-b-2 border-cyan-400 text-sm font-medium">Products</a>
                     <a href="https://skyfallcheats.shop/forum" class="text-cyan-100 hover:text-white px-1 py-5 border-b-2 border-transparent hover:border-cyan-400 text-sm font-medium">Forum</a>
-                    <a href="#" class="text-cyan-100 hover:text-white px-1 py-5 border-b-2 border-transparent hover:border-cyan-400 text-sm font-medium">Support</a>
                     <button class="ml-6 px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-6 hover:to-blue-700 text-white font-medium rounded-full text-sm shadow-lg hover:shadow-cyan-500/30">
                         Dashboard
                     </button>
                 </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="mobile-menu hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-800/90 backdrop-blur-lg">
+                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Home</a>
+                <a href="https://skyfallcheats.shop/products" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Products</a>
+                <a href="https://skyfallcheats.shop/forum" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Forum</a>
+                <button class="w-full mt-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium rounded-md">
+                    Dashboard
+                </button>
             </div>
         </div>
     </nav>
 
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
     <!-- Product Section -->
-    <main class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 pt-32 pb-12">
-        <div class="bg-gray-800/20 backdrop-blur-lg rounded-xl p-8 border border-gray-900/50 shadow-xl shadow-gray-900/20">
-            <h2 class="text-4xl font-bold text-white mb-8 text-center title-font">Fortnite</h2>
-            <div class="flex space-x-8 pb-2 pl-2 pr-2">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 md:pt-32 pb-8 md:pb-12">
+        <div class="bg-gray-800/20 backdrop-blur-lg rounded-xl p-6 md:p-8 border border-gray-900/50 shadow-xl shadow-gray-900/20">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 md:mb-8 text-center title-font">Fortnite</h2>
+            <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 lg:space-x-8 pb-2 px-2">
                 <!-- Fortnite Internal -->
                 <div class="flex-shrink-0 w-full max-w-lg bg-gradient-to-b from-blue-900/30 to-blue-900/10 rounded-xl overflow-hidden border-2 border-gray-900/50 shadow-2xl shadow-gray-900/30 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/30 hover:border-cyan-400/50">
                     <div class="p-10">
@@ -99,7 +178,7 @@
     <!-- Footer -->
     <footer class="bg-blue-900/10 border-t border-cyan-500/10 mt-20 py-12">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <p class="text-cyan-100 text-sm">SkyFall Copyright 2025 | Website Designed By Drowzy All Rights Reserved. Payment Gateway API SellHub.</p>
+            <p class="text-cyan-100 text-sm font-bold">SkyFall Copyright 2025 | Website Designed By Drowzy All Rights Reserved. Payment Gateway API SellHub.</p>
             <div class="mt-6">
                 <a href="https://discord.gg/skyfallproducts" target="_blank" class="inline-block text-white hover:text-gray-300 transition-colors">
                     <i class="fab fa-discord fa-2x"></i>
@@ -112,5 +191,17 @@
     <script src="https://js.sellhub.io/v1/sellhub.js"></script>
     <script type="module" src="products-simple.js"></script>
     <script src="src/particles.js"></script>
+    <!-- Crisp Chatbox -->
+    <script type="text/javascript">
+        window.$crisp=[];
+        window.CRISP_WEBSITE_ID="7425bfc8-4f3a-41f4-b8b7-1067871acc12";
+        (function(){
+            d=document;
+            s=d.createElement("script");
+            s.src="https://client.crisp.chat/l.js";
+            s.async=1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+        })();
+    </script>
 </body>
 </html>

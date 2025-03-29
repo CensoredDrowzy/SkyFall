@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | SkyFall</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-900 min-h-screen p-8">
+    <div id="adminContent" class="hidden">
+        <!-- Existing admin content will go here -->
+    </div>
+
+    <script>
+        // Secure authentication verification
+        async function verifyAuth() {
+            const token = sessionStorage.getItem('adminToken');
+            if (!token) {
+                redirectToLogin();
+                return false;
+            }
+
+            try {
+                const response = await fetch('/verify-auth', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    credentials: 'same-origin'
+                });
+                
+                if (!response.ok) throw new Error('Invalid token');
+                return true;
+            } catch (error) {
+                console.error('Auth verification failed:', error);
+                redirectToLogin();
+                return false;
+            }
+        }
+
+        function redirectToLogin() {
+            sessionStorage.removeItem('adminToken');
+            window.location.href = 'admin-login-secure.html';
+        }
+
+        // Initialize with verification
+        verifyAuth().then(authenticated => {
+            if (authenticated) {
+                document.getElementById('adminContent').classList.remove('hidden');
+                // Secure event delegation for admin functionality
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('[data-admin-action]')) return;
+                    
+                    // Verify auth before any action
+                    verifyAuth().then(authenticated => {
+                        if (!authenticated) return;
+                        
+                        // Handle admin actions securely
+                        const action = e.target.closest('[data-admin-action]').dataset.adminAction;
+                        if (action === 'logout') {
+                            logout();
+                        }
+                        // Add other actions here
+                    });
+                });
+            }
+        });
+
+        function logout() {
+            // Clear client-side token
+            sessionStorage.removeItem('adminToken');
+            
+            // Optional: Call server to invalidate token
+            fetch('/logout', {
+                method: 'POST',
+                credentials: 'same-origin'
+            }).finally(() => {
+                window.location.href = 'admin-login-secure.html';
+            });
+        }
+    </script>
+</body>
+</html>

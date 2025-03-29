@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyFall Security Check</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .spinner {
+            animation: spin 1.5s linear infinite;
+        }
+        .progress-bar {
+            transition: width 3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white h-screen flex flex-col items-center justify-center">
+    <div class="text-center max-w-md px-6">
+        <div class="spinner text-5xl text-cyan-400 mb-6">
+            <i class="fas fa-shield-alt"></i>
+        </div>
+        <h1 class="text-3xl font-bold mb-4">Security Verification</h1>
+        <p class="mb-6">Checking your browser before accessing skyfallcheats.shop</p>
+        
+        <div class="w-full bg-gray-700 rounded-full h-2.5 mb-6">
+            <div class="progress-bar bg-cyan-500 h-2.5 rounded-full" style="width: 0%"></div>
+        </div>
+        
+        <p class="text-sm text-gray-400">
+            This process is automatic. Your browser will redirect to the site shortly.
+        </p>
+    </div>
+
+    <script>
+        // Simulate security checks
+        document.querySelector('.progress-bar').style.width = '100%';
+        
+        // Get redirect target from URL or default to index.html
+        const urlParams = new URLSearchParams(window.location.search);
+        let redirectTo = urlParams.get('redirect') || 'index.html';
+        
+        // Validate redirect URL to prevent open redirects
+        const allowedPaths = ['index.html', 'products.html'];
+        if (!allowedPaths.includes(redirectTo)) {
+            redirectTo = 'index.html';
+        }
+
+        // Set verification timestamp (lasts for current session)
+        const now = new Date().getTime();
+        sessionStorage.setItem('lastSecurityCheck', now);
+        
+        setTimeout(() => {
+            window.location.href = redirectTo;
+        }, 3000);
+    </script>
+</body>
+</html>

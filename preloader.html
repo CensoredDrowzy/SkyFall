@@ -40,12 +40,12 @@
         // Simulate security checks
         document.querySelector('.progress-bar').style.width = '100%';
         
-        // Get redirect target from URL or default to index.html
+        // Get redirect target from URL or default to /
         const urlParams = new URLSearchParams(window.location.search);
-        let redirectTo = urlParams.get('redirect') || 'index.html';
+        let redirectTo = urlParams.get('redirect') || '/';
         
         // Validate redirect URL to prevent open redirects
-        const allowedPaths = ['index.html', 'products.html'];
+        const allowedPaths = ['/', '/products', 'index.html', 'products.html'];
         if (!allowedPaths.includes(redirectTo)) {
             redirectTo = 'index.html';
         }

@@ -1,37 +1,16 @@
-# Basic x10 hosting configuration
-Options +FollowSymLinks -MultiViews
-
-# Enable rewrite engine
 RewriteEngine On
 
-# Force HTTPS
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# Remove .html extensions
+# Remove .html extension from URLs
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.*)$ $1.html [NC,L]
 
-# Custom error documents
-ErrorDocument 404 /404.html
-ErrorDocument 500 /500.html
+# Redirect .html URLs to clean versions
+RewriteCond %{THE_REQUEST} \.html
+RewriteRule ^(.*)\.html$ /$1 [R=301,L]
 
-# Cache control for static assets
-<FilesMatch "\.(ico|jpg|jpeg|png|gif|js|css|swf)$">
-    Header set Cache-Control "max-age=604800, public"
-</FilesMatch>
+# Handle clean URLs for index
+RewriteRule ^$ index.html [L]
 
-# Disable directory browsing
-Options -Indexes
-
-# Prevent access to .htaccess
-<Files .htaccess>
-    Order allow,deny
-    Deny from all
-</Files>
-
-# Compression
-<IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/css application/javascript
-</IfModule>
+# Specific rule for products page
+RewriteRule ^products$ products.html [L]

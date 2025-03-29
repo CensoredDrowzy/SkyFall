@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 400px; margin: 0 auto; padding: 20px; }
+        input, button { width: 100%; padding: 10px; margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>Test Admin Login</h1>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" value="Drowzy" required>
+        <input type="password" id="password" placeholder="Password" value="ChristianC1123!" required>
+        <button type="submit">Login</button>
+    </form>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const response = await fetch('http://localhost:3001/login', {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                if (result.success) {
+                    alert('Login successful!');
+                    // Redirect to admin panel
+                    window.location.href = 'admin-secure.html';
+                } else {
+                    alert('Login failed: ' + (result.message || 'Invalid credentials'));
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                alert('Login failed. Check console for details.');
+            }
+        });
+    </script>
+</body>
+</html>
